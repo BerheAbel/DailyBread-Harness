@@ -15,33 +15,38 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 public class CreateExcel {
 
 	public static void main(String[] args) throws IOException {
-		// TODO Auto-generated method stub
 		
-		
+      // Tips			
+//	since we're working with external tools never forget to associate them with
+//	the code.
 //		
-//		
-		Random ranum = new Random();
+		Random car = new Random();
 		Set<Integer> pin = new LinkedHashSet<Integer>();
 		
-		int answer = ranum.nextInt(1000);
-		while(pin.size() !=500) {
-	     pin.add(ranum.nextInt(answer));
-			}
+		int sum = car.nextInt(1000);
+		do {
+	     pin.add(car.nextInt(sum));
+		}
+		while (pin.size() !=500);
+//create workbook>>create work sheet>>create row>>create cell
+//XSSFWorkbook: Is a class representation of XLSX file. 
+//HSSFWorkbook: Is a class representation of XLS file. 
+//Sheet: XSSFSheet and HSSFSheet classes implement this interface. XSSFSheet
 		XSSFWorkbook wb = new XSSFWorkbook();
 		XSSFSheet ws = wb.createSheet("sheet1");
-		ws.createRow(0).createCell(0).setCellValue("Random numbers");
-		int count = 1;
+		ws.createRow(0).createCell(0).setCellValue("Unique numbers");
+		int luck = 0;
 		for(Integer i:pin) {
-			ws.createRow(count).createCell(0).setCellValue(i);
-			count++;
+			ws.createRow(luck).createCell(0).setCellValue(i);
+			luck++;
 		}
-	   
+//Java FileOutputStream is an output stream used for writing data to a file
 		String path = "data\\abc.xlsx";
-		File fname = new File(path);
-		FileOutputStream fo = new FileOutputStream(fname);
-		wb.write(fo);
+		File home = new File(path);
+		FileOutputStream ca = new FileOutputStream(home);
+		wb.write(ca);
 		wb.close();
-		fo.close();
+		ca.close();
 		
 		
 	}
